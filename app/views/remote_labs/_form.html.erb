@@ -6,6 +6,8 @@
     <%= f.input :version %>
     <%= f.input :author %>
     <%= f.input :school %>
+    <%= f.label :lab_type%>
+    <%= f.select(:lab_type, RemoteLab.lab_types.keys.map {|lab_type| [lab_type.titleize,lab_type]}) %>
   </div>
 
   <div class="form-actions">

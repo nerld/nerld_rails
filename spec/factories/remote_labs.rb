@@ -6,5 +6,6 @@ FactoryGirl.define do
     version 1.5
     author "Khanh Nguyen"
     school "University of Sydney"
+    lab_type RemoteLab.lab_types[:controllable]
   end
 end

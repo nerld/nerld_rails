@@ -12,6 +12,7 @@
     <thead>
       <tr>
         <th width="300">Title</th>
+        <th width="150">Type</th>
         <th width="50">Version</th>
         <th width="200">Author</th>
         <th width="200">School</th>
@@ -23,6 +24,7 @@
       <% @remote_labs.each do |remote_lab| %>
         <tr>
           <td><%= remote_lab.title %></td>
+          <td><%= remote_lab.lab_type.titleize %></td>
           <td><%= remote_lab.version %></td>
           <td><%= remote_lab.author %></td>
           <td><%= remote_lab.school %></td>
