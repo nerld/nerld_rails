@@ -18,6 +18,7 @@ gem 'thin'
 gem 'upmin-admin'
 gem 'bootstrap-sass'
 gem 'flat-ui-rails'
+gem 'cocoon'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

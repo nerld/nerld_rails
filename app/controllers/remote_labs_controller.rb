@@ -20,6 +20,7 @@ class RemoteLabsController < ApplicationController
   # GET /remote_labs/new
   def new
     @remote_lab = RemoteLab.new
+    @remote_lab.inputs.build
     authorize @remote_lab
   end
 
@@ -81,6 +82,8 @@ class RemoteLabsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def remote_lab_params
-      params.require(:remote_lab).permit(:title, :version, :author, :school, :user_id, :lab_type, :password, :allowable_time)
+      params.require(:remote_lab).permit(:title, :version, :author, :school, :user_id,
+                                         :lab_type, :password, :allowable_time,
+                                         inputs_attributes: [:id, :name, :pin_type, :pin, :data_type, :data_rate, :data_units, :_destroy])
     end
 end

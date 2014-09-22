@@ -44,9 +44,47 @@
         </div>
       </div>
       <div class="tab-pane" id="yunConfig">
-        <p>This has not been implemented yet.</p>
-        <p>Define Yun Address and authentication</p>
-        <p>Define inputs and outputs</p>
+        <div class="form-inputs">
+          <div class="serverDetails">
+            <h4>Server</h4>
+            <%= f.input :yun_server, input_html: {class:'form-control' , placeholder: 'http://myArduinoYun.local'}%>
+          </div>
+
+          <hr>
+
+          <div class="yunInputs">
+            <h4>Inputs</h4>
+
+            <%= link_to_add_association f, :inputs, :"data-association-insertion-node" => ".yunInputTable tbody",:"data-association-insertion-method" => "append" do %>
+              <btn class="btn btn-default">New Input</btn>
+            <% end %>
+            <table class="yunInputTable table">
+              <thead>
+              <th width="200">Name</th>
+              <th width="200">Pin Type</th>
+              <th width="200">Pin</th>
+              <th width="200">Data Type</th>
+              <th width="200">Data Rate</th>
+              <th width="200">Data Units</th>
+              <th></th>
+              </thead>
+              <tbody>
+              <%= f.simple_fields_for :inputs do |i|%>
+                <%= render 'input_fields', :f => i%>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
+          <hr>
+
+          <div class="yunOutputs">
+            <h4>Outputs</h4>
+            <btn class="btn btn-default">New Output</btn>
+          </div>
+
+        </div>
+
       </div>
       <div class="tab-pane" id="uiDesigner">
         <p>UI Designer has not been implemented yet.</p>

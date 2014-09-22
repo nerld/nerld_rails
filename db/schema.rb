@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922080623) do
+ActiveRecord::Schema.define(version: 20140922121144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "inputs", force: true do |t|
+    t.string   "name"
+    t.integer  "pin_type"
+    t.integer  "pin"
+    t.integer  "data_type"
+    t.float    "data_rate"
+    t.string   "data_units"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "remote_lab_id"
+  end
 
   create_table "remote_labs", force: true do |t|
     t.string   "title"
@@ -27,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140922080623) do
     t.integer  "lab_type"
     t.string   "password"
     t.integer  "allowable_time"
+    t.string   "yun_server"
   end
 
   create_table "users", force: true do |t|
