@@ -2,10 +2,10 @@
   <%= simple_form_for(@remote_lab) do |f| %>
     <%= f.error_notification %>
   <dl class="tabs" data-tab>
-    <dd class="active"><a href="#details">Details</a></dd>
-    <dd><a href="#labConfig">Lab Configuration</a></dd>
-    <dd><a href="#yunConfig">Yún Configuration</a></dd>
-    <dd><a href="#pdfUpload">PDF</a></dd>
+    <dd class="active"><a id="details" href="#details">Details</a></dd>
+    <dd><a id="labConfig" href="#labConfig">Lab Configuration</a></dd>
+    <dd><a id="yunConfig" href="#yunConfig">Yún Configuration</a></dd>
+    <dd><a id="pdfUpload" href="#pdfUpload">PDF</a></dd>
   </dl>
 
   <div class="tabs-content">
@@ -60,6 +60,13 @@
         $('.publish-only-config').fadeIn();
         $('.controllable-config input').val('');
       }
-    })
+    });
+
+    // on validation error toggle to the tab with the first error
+    var firstErrorTabId = $('.error').first().parents('.content').attr('id');
+    if (firstErrorTabId != undefined) {
+      $('#'+firstErrorTabId).click();
+    }
+
   });
 </script>
