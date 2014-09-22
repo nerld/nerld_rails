@@ -11,12 +11,13 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'devise'
 gem 'devise_invitable'
-gem 'foundation-rails'
 gem 'pg'
 gem 'pundit'
 gem 'simple_form'
 gem 'thin'
 gem 'upmin-admin'
+gem 'bootstrap-sass'
+gem 'flat-ui-rails'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+.input {
+  margin: 10px;
+}
+
+.centerize {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}

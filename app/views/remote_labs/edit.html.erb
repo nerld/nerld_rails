@@ -1,8 +1,5 @@
-<div class="row">
-  <h1>Editing <%= @remote_lab.title %></h1>
+<div class="container">
+  <h1>Editing <%= link_to @remote_lab.title, @remote_lab %></h1>
 
   <%= render 'form' %>
-
-  <%= link_to 'Show', @remote_lab %> |
-  <%= link_to 'Back', remote_labs_path %>
 </div>

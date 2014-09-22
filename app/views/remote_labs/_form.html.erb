@@ -1,47 +1,53 @@
-<div class="columns large-12">
+<div class="row">
   <%= simple_form_for(@remote_lab) do |f| %>
     <%= f.error_notification %>
-  <dl class="tabs" data-tab>
-    <dd class="active"><a id="details" href="#details">Details</a></dd>
-    <dd><a id="labConfig" href="#labConfig">Lab Configuration</a></dd>
-    <dd><a id="yunConfig" href="#yunConfig">Yún Configuration</a></dd>
-    <dd><a id="pdfUpload" href="#pdfUpload">PDF</a></dd>
-  </dl>
-
-  <div class="tabs-content">
-    <div class="content active" id="details">
-      <div class="form-inputs">
-        <%= f.input :title%>
-        <%= f.input :version %>
-        <%= f.input :author %>
-        <%= f.input :school %>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active"><a href="#details" role="tab" data-toggle="tab">Details</a></li>
+      <li><a href="#labConfig" role="tab" data-toggle="tab">Lab Configuration</a></li>
+      <li><a href="#yunConfig" role="tab" data-toggle="tab">Yún Configuration</a></li>
+      <li><a href="#pdfUpload" role="tab" data-toggle="tab">PDF Upload</a></li>
+      <div class="form-actions">
+        <%= f.button :submit, class:'btn btn-primary', id: 'remote-lab-submit' %>
       </div>
-    </div>
-    <div class="content" id="labConfig">
-      <div class="form-inputs">
-        <%= f.label :lab_type %>
-        <%= f.select(:lab_type, RemoteLab.lab_types.keys.map {|lab_type| [lab_type.titleize,lab_type]}) %>
-        <div class="publish-only-config" <%= 'hidden' if @remote_lab.lab_type == 'controllable'%>>
-          TODO
-        </div>
-        <div class="controllable-config" <%= 'hidden' if @remote_lab.lab_type.nil? or @remote_lab.lab_type == 'publish_only'%>>
-          <%= f.input :password%>
-          <%= f.input :allowable_time %>
+    </ul>
+
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane active" id="details">
+        <div class="form-inputs">
+              <%= f.input :title, input_html: {class: 'form-control'}%>
+          <%= f.input :version, input_html: {class: 'form-control'}%>
+          <%= f.input :author, input_html: {class: 'form-control'} %>
+          <%= f.input :school, input_html: {class: 'form-control'} %>
         </div>
       </div>
+      <div class="tab-pane" id="labConfig">
+        <div class="form-inputs">
+          <div class="input">
+            <%= f.label :lab_type %>
+            <%= f.select(:lab_type, RemoteLab.lab_types.keys.map {|lab_type| [lab_type.titleize,lab_type]}, {}, { :class => 'form-control'}) %>
+          </div>
+          <div class="publish-only-config" <%= 'hidden' if @remote_lab.lab_type == 'controllable'%>>
+            TODO
+          </div>
+          <div class="controllable-config" <%= 'hidden' if @remote_lab.lab_type.nil? or @remote_lab.lab_type == 'publish_only'%>>
+            <%= f.input :password, input_html: {class: 'form-control'}%>
+            <%= f.input :allowable_time, input_html: {class: 'form-control'} %>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="yunConfig">
+        <p>Define Yun Address and authentication</p>
+        <p>Define inputs and outputs</p>
+      </div>
+      <div class="tab-pane" id="pdfUpload">
+        <p>Upload PDF that describe the experiment.</p>
+      </div>
     </div>
-    <div class="content" id="yunConfig">
-      <p>Define Yun Address and authentication</p>
-      <p>Define inputs and outputs</p>
-    </div>
-    <div class="content" id="pdfUpload">
-      <p>Upload PDF that describe the experiment.</p>
-    </div>
-  </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, class:'right' %>
-    </div>
+
   <% end %>
 </div>
 
@@ -61,12 +67,5 @@
         $('.controllable-config input').val('');
       }
     });
-
-    // on validation error toggle to the tab with the first error
-    var firstErrorTabId = $('.error').first().parents('.content').attr('id');
-    if (firstErrorTabId != undefined) {
-      $('#'+firstErrorTabId).click();
-    }
-
   });
 </script>

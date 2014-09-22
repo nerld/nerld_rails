@@ -3,9 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #new-remote-lab-btn {
-  margin-top: 10px;
+  margin-top: 20px;
+  float: right;
 }
 
-.remote_lab_password .in, .remote_lab_allowable_time .in{
-  display: none;
+#remote-lab-submit {
+  float: right;
 }
