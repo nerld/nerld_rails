@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @remote_lab.title %>
+</p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @remote_lab.version %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @remote_lab.author %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @remote_lab.school %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @remote_lab.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_remote_lab_path(@remote_lab) %> |
+<%= link_to 'Back', remote_labs_path %>
