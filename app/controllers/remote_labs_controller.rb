@@ -81,6 +81,6 @@ class RemoteLabsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def remote_lab_params
-      params.require(:remote_lab).permit(:title, :version, :author, :school, :user_id, :lab_type)
+      params.require(:remote_lab).permit(:title, :version, :author, :school, :user_id, :lab_type, :password, :allowable_time)
     end
 end

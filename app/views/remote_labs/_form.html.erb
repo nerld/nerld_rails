@@ -1,16 +1,65 @@
-<%= simple_form_for(@remote_lab) do |f| %>
-  <%= f.error_notification %>
+<div class="columns large-12">
+  <%= simple_form_for(@remote_lab) do |f| %>
+    <%= f.error_notification %>
+  <dl class="tabs" data-tab>
+    <dd class="active"><a href="#details">Details</a></dd>
+    <dd><a href="#labConfig">Lab Configuration</a></dd>
+    <dd><a href="#yunConfig">Yún Configuration</a></dd>
+    <dd><a href="#pdfUpload">PDF</a></dd>
+  </dl>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :version %>
-    <%= f.input :author %>
-    <%= f.input :school %>
-    <%= f.label :lab_type%>
-    <%= f.select(:lab_type, RemoteLab.lab_types.keys.map {|lab_type| [lab_type.titleize,lab_type]}) %>
+  <div class="tabs-content">
+    <div class="content active" id="details">
+      <div class="form-inputs">
+        <%= f.input :title%>
+        <%= f.input :version %>
+        <%= f.input :author %>
+        <%= f.input :school %>
+      </div>
+    </div>
+    <div class="content" id="labConfig">
+      <div class="form-inputs">
+        <%= f.label :lab_type %>
+        <%= f.select(:lab_type, RemoteLab.lab_types.keys.map {|lab_type| [lab_type.titleize,lab_type]}) %>
+        <div class="publish-only-config" <%= 'hidden' if @remote_lab.lab_type == 'controllable'%>>
+          TODO
+        </div>
+        <div class="controllable-config" <%= 'hidden' if @remote_lab.lab_type.nil? or @remote_lab.lab_type == 'publish_only'%>>
+          <%= f.input :password%>
+          <%= f.input :allowable_time %>
+        </div>
+      </div>
+    </div>
+    <div class="content" id="yunConfig">
+      <p>Define Yun Address and authentication</p>
+      <p>Define inputs and outputs</p>
+    </div>
+    <div class="content" id="pdfUpload">
+      <p>Upload PDF that describe the experiment.</p>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%= f.button :submit, class:'right' %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  $(document).ready(function() {
+    // Toggles the Lab Type Params
+    $('#remote_lab_lab_type').change(function(e) {
+      var selected = $(this).val()
+      if (selected == 'controllable') {
+        $('.publish-only-config').fadeOut();
+        $('.controllable-config').fadeIn();
+        $('.publish-only-config input').val('');
+      }
+      else {
+        $('.controllable-config').fadeOut();
+        $('.publish-only-config').fadeIn();
+        $('.controllable-config input').val('');
+      }
+    })
+  });
+</script>

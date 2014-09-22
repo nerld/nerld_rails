@@ -7,4 +7,5 @@ class RemoteLab < ActiveRecord::Base
 
   # Validations
   validates_presence_of :title, :version, :author, :school, :lab_type
+  validates_presence_of :password, :allowable_time, if: "lab_type == 'controllable'"
 end
