@@ -1,8 +1,8 @@
 <tr class="nested-fields">
   <td><%= f.input_field :name, placeholder: 'Input Name', class: ' form-control' %></td>
-  <td><%= f.select(:pin_type, RemoteLab.pin_types.keys.map {|pin_type| [pin_type.titleize,pin_type]}, {}, { :class => 'form-control'}) %></td>
+  <td><%= f.select(:pin_type, Input.pin_types.keys.map {|pin_type| [pin_type.titleize,pin_type]}, {}, { :class => 'form-control'}) %></td>
   <td><%= f.input_field :pin, placeholder: 'Pin Number', class: ' form-control nested-num' %></td>
-  <td><%= f.select(:pin_type, RemoteLab.data_types.keys.map {|data_type| [data_type.titleize,data_type]}, {}, { :class => 'form-control'}) %></td>
+  <td><%= f.select(:pin_type, Input.data_types.keys.map {|data_type| [data_type.titleize,data_type]}, {}, { :class => 'form-control'}) %></td>
   <td><%= f.input_field :data_rate, placeholder: 'Data Rate', class: ' form-control nested-num' %></td>
   <td><%= f.input_field :data_units, placeholder: 'Data Units', class: ' form-control nested-num' %></td>
   <td>

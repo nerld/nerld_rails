@@ -80,7 +80,24 @@
 
           <div class="yunOutputs">
             <h4>Outputs</h4>
-            <btn class="btn btn-default">New Output</btn>
+            <%= link_to_add_association f, :outputs, :"data-association-insertion-node" => ".yunOutputTable tbody",:"data-association-insertion-method" => "append" do %>
+              <btn class="btn btn-default">New Output</btn>
+            <% end %>
+            <table class="yunOutputTable table">
+              <thead>
+              <th width="200">Name</th>
+              <th width="200">Pin Type</th>
+              <th width="200">Pin</th>
+              <th width="200">Data Type</th>
+              <th width="200">Data Parameters</th>
+              <th></th>
+              </thead>
+              <tbody>
+              <%= f.simple_fields_for :outputs do |i|%>
+                <%= render 'output_fields', :f => i%>
+              <% end %>
+              </tbody>
+            </table>
           </div>
 
         </div>

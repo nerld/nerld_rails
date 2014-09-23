@@ -7,7 +7,7 @@ class RemoteLabsController < ApplicationController
   # GET /remote_labs
   # GET /remote_labs.json
   def index
-    @remote_labs = RemoteLab.all
+    @remote_labs = current_user.remote_labs
     authorize RemoteLab
   end
 
@@ -21,6 +21,7 @@ class RemoteLabsController < ApplicationController
   def new
     @remote_lab = RemoteLab.new
     @remote_lab.inputs.build
+    @remote_lab.outputs.build
     authorize @remote_lab
   end
 
@@ -84,6 +85,7 @@ class RemoteLabsController < ApplicationController
     def remote_lab_params
       params.require(:remote_lab).permit(:title, :version, :author, :school, :user_id,
                                          :lab_type, :password, :allowable_time,
-                                         inputs_attributes: [:id, :name, :pin_type, :pin, :data_type, :data_rate, :data_units, :_destroy])
+                                         inputs_attributes: [:id, :name, :pin_type, :pin, :data_type, :data_rate, :data_units, :_destroy],
+                                         outputs_attributes: [:id, :name, :pin_type, :pin, :data_type, :data_parameters, :_destroy])
     end
 end
